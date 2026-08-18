@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdouroihamane &amp; Annouchka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Jost:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#170F2E;
+    --bg-plum:#2E1A47;
+    --coral:#E85D75;
+    --gold:#E8B04B;
+    --cream:#F7EFE3;
+    --cream-dim:#cdc2ae;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-deep);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .signature{
+    font-family:'Dancing Script', cursive;
+  }
+  section{
+    position:relative;
+    padding:6rem 1.5rem;
+    max-width:900px;
+    margin:0 auto;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- HERO ---------- */
+  #hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem 1.5rem;
+    max-width:none;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(232,176,74,0.08), transparent 55%),
+      radial-gradient(ellipse at 80% 75%, rgba(232,93,117,0.10), transparent 55%),
+      var(--bg-deep);
+  }
+  .stars{
+    position:absolute; inset:0; overflow:hidden; pointer-events:none;
+  }
+  .star{
+    position:absolute;
+    width:2px; height:2px;
+    background:var(--cream);
+    border-radius:50%;
+    opacity:0.5;
+    animation:twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:0.15;}
+    50%{opacity:0.8;}
+  }
+  .petal-fall{
+    position:absolute; top:-5%;
+    font-size:1.1rem;
+    color:var(--coral);
+    opacity:0.55;
+    animation:fall linear infinite;
+    pointer-events:none;
+  }
+  @keyframes fall{
+    0%{ transform:translateY(0) rotate(0deg); opacity:0; }
+    10%{ opacity:0.55; }
+    100%{ transform:translateY(115vh) rotate(220deg); opacity:0; }
+  }
+  .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:1.4rem;
+  }
+  #hero h1{
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    line-height:1.08;
+    color:var(--cream);
+  }
+  #hero h1 .amp{
+    color:var(--coral);
+    font-style:italic;
+    font-weight:400;
+  }
+  #hero .tagline{
+    margin-top:1.2rem;
+    font-size:1.05rem;
+    color:var(--cream-dim);
+    max-width:480px;
+  }
+
+  .constellation{
+    position:relative;
+    width:min(420px, 80vw);
+    height:90px;
+    margin:3.2rem auto 2.4rem;
+  }
+  .dot{
+    position:absolute;
+    top:50%;
+    width:14px; height:14px;
+    border-radius:50%;
+    transform:translateY(-50%);
+    box-shadow:0 0 14px currentColor;
+  }
+  .dot.a{ left:0; background:var(--gold); color:var(--gold); }
+  .dot.b{ right:0; background:var(--coral); color:var(--coral); }
+  .link-line{
+    position:absolute; top:50%; left:14px; right:14px;
+    height:1px;
+    background:linear-gradient(90deg, var(--gold), var(--coral));
+    transform:translateY(-50%);
+    opacity:0.4;
+  }
+  .link-line::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, transparent, rgba(247,239,227,0.9), transparent);
+    background-size:60% 100%;
+    background-repeat:no-repeat;
+    animation:pulse-line 3s ease-in-out infinite;
+  }
+  @keyframes pulse-line{
+    0%{ background-position:-60% 0; }
+    100%{ background-position:160% 0; }
+  }
+  .heart-send{
+    position:absolute;
+    top:50%; left:14px;
+    transform:translateY(-50%);
+    font-size:1rem;
+    color:var(--cream);
+    opacity:0;
+  }
+  .heart-send.go{
+    animation:travel 1.8s ease-in-out forwards;
+  }
+  @keyframes travel{
+    0%{ opacity:0; left:14px; transform:translateY(-50%) scale(0.6);}
+    10%{ opacity:1; transform:translateY(-50%) scale(1);}
+    90%{ opacity:1; }
+    100%{ opacity:0; left:calc(100% - 20px); transform:translateY(-50%) scale(1.3);}
+  }
+  .send-btn{
+    background:transparent;
+    border:1px solid rgba(232,176,74,0.5);
+    color:var(--gold);
+    font-family:'Jost', sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:0.85rem 1.8rem;
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+  }
+  .send-btn:hover, .send-btn:focus-visible{
+    background:rgba(232,176,74,0.12);
+    border-color:var(--gold);
+    outline:none;
+  }
+  .send-note{
+    margin-top:1rem;
+    font-size:0.85rem;
+    color:var(--cream-dim);
+    font-style:italic;
+    min-height:1.2em;
+    opacity:0;
+    transition:opacity 0.4s ease;
+  }
+  .send-note.show{ opacity:1; }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:2.2rem; left:50%;
+    transform:translateX(-50%);
+    font-size:0.7rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  }
+  .scroll-cue span{
+    width:1px; height:28px;
+    background:linear-gradient(var(--gold), transparent);
+    animation:cue 1.8s ease-in-out infinite;
+  }
+  @keyframes cue{
+    0%,100%{ opacity:0.3; }
+    50%{ opacity:1; }
+  }
+
+  /* ---------- shared section heading ---------- */
+  .section-head{
+    text-align:center;
+    margin-bottom:3.5rem;
+  }
+  .section-head .eyebrow{ margin-bottom:0.8rem; }
+  .section-head h2{
+    font-size:clamp(1.9rem, 4vw, 2.6rem);
+    color:var(--cream);
+  }
+
+  /* ---------- TIMELINE ---------- */
+  #timeline{ padding-top:5rem; }
+  .timeline-wrap{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:0 1.6rem;
+  }
+  .bloom-col{
+    position:sticky;
+    top:8rem;
+    height:0;
+    display:flex;
+    justify-content:center;
+  }
+  .bloom-col svg{ width:56px; height:56px; overflow:visible; }
+  .petal{
+    opacity:0.12;
+    transform-origin:60px 60px;
+    transition:opacity 0.8s ease, transform 0.8s ease;
+    fill:var(--coral);
+  }
+  .petal.bloomed{ opacity:0.95; }
+  .flower-center{ fill:var(--gold); opacity:0.9; }
+
+  .milestones{ grid-column:2; display:flex; flex-direction:column; gap:5.5rem; }
+  .milestone{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .milestone.visible{ opacity:1; transform:translateY(0); }
+  .milestone .year{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:1rem;
+    margin-bottom:0.4rem;
+    display:block;
+  }
+  .milestone h3{
+    font-size:1.5rem;
+    color:var(--cream);
+    margin-bottom:0.6rem;
+  }
+  .milestone p{
+    color:var(--cream-dim);
+    line-height:1.7;
+    font-size:0.98rem;
+    max-width:520px;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:1.6rem;
+  }
+  .frame{
+    background:linear-gradient(155deg, rgba(232,176,74,0.14), rgba(232,93,117,0.14));
+    border:1px solid rgba(247,239,227,0.14);
+    border-radius:4px;
+    padding:0.7rem 0.7rem 1.1rem;
+    text-align:center;
+  }
+  .frame-inner{
+    aspect-ratio:4/5;
+    border:1px dashed rgba(247,239,227,0.28);
+    border-radius:2px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(23,15,46,0.35);
+  }
+  .frame-inner svg{ width:34%; opacity:0.6; }
+  .frame figcaption{
+    margin-top:0.8rem;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    color:var(--cream-dim);
+  }
+
+  /* ---------- VIDEOS (gated) ---------- */
+  .gate-card{
+    max-width:420px;
+    margin:0 auto;
+    text-align:center;
+    background:rgba(46,26,71,0.55);
+    border:1px solid rgba(232,176,74,0.2);
+    border-radius:10px;
+    padding:2.4rem 2rem;
+  }
+  .gate-question{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    margin-bottom:1.3rem;
+    color:var(--cream);
+  }
+  .gate-input{
+    width:100%;
+    background:rgba(247,239,227,0.05);
+    border:1px solid rgba(247,239,227,0.22);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-size:0.95rem;
+    padding:0.8rem 1rem;
+    border-radius:6px;
+    text-align:center;
+  }
+  .gate-input:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .gate-feedback{
+    margin-top:1rem;
+    font-size:0.85rem;
+    color:var(--cream-dim);
+    font-style:italic;
+    min-height:1.2em;
+  }
+  .gate-feedback.error{ color:var(--coral); }
+  .video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:1.6rem;
+    margin-top:2.5rem;
+    animation:fadein 0.6s ease;
+  }
+  @keyframes fadein{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-card{
+    background:rgba(46,26,71,0.55);
+    border:1px solid rgba(232,176,74,0.2);
+    border-radius:10px;
+    padding:2.2rem 2rem;
+  }
+  .quiz-progress{
+    font-size:0.75rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:1rem;
+  }
+  .quiz-q{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem;
+    margin-bottom:1.4rem;
+  }
+  .quiz-options{ display:flex; flex-direction:column; gap:0.7rem; }
+  .quiz-opt{
+    text-align:left;
+    background:rgba(247,239,227,0.04);
+    border:1px solid rgba(247,239,227,0.16);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-size:0.95rem;
+    padding:0.85rem 1.1rem;
+    border-radius:6px;
+    cursor:pointer;
+    transition:all 0.25s ease;
+  }
+  .quiz-opt:hover, .quiz-opt:focus-visible{
+    border-color:var(--coral);
+    background:rgba(232,93,117,0.1);
+    outline:none;
+  }
+  .quiz-opt.chosen{
+    border-color:var(--gold);
+    background:rgba(232,176,74,0.14);
+  }
+  .quiz-feedback{
+    margin-top:1.1rem;
+    font-size:0.9rem;
+    color:var(--cream-dim);
+    font-style:italic;
+    min-height:1.3em;
+  }
+  .quiz-nav{
+    margin-top:1.6rem;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .quiz-result{ text-align:center; }
+  .quiz-result h3{
+    font-size:1.9rem;
+    color:var(--gold);
+    margin-bottom:0.8rem;
+  }
+  .quiz-result p{ color:var(--cream-dim); line-height:1.7; }
+  .quiz-restart{
+    margin-top:1.4rem;
+    background:none;
+    border:1px solid rgba(232,176,74,0.4);
+    color:var(--gold);
+    padding:0.7rem 1.6rem;
+    border-radius:999px;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .quiz-restart:hover{ background:rgba(232,176,74,0.1); }
+  .hidden{ display:none; }
+
+  /* ---------- LETTER ---------- */
+  #letter{ padding-bottom:8rem; }
+  .letter-card{
+    background:linear-gradient(180deg, rgba(46,26,71,0.4), transparent);
+    border-top:1px solid rgba(232,176,74,0.25);
+    border-bottom:1px solid rgba(232,176,74,0.25);
+    padding:3.5rem 1rem;
+    text-align:center;
+  }
+  .letter-card p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    line-height:1.8;
+    max-width:560px;
+    margin:0 auto 2rem;
+    color:var(--cream);
+  }
+  .letter-sign{
+    font-family:'Dancing Script', cursive;
+    font-size:2.1rem;
+    color:var(--coral);
+  }
+
+  footer{
+    text-align:center;
+    padding:2.5rem 1.5rem 3rem;
+    color:var(--cream-dim);
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="stars" id="starfield"></div>
+  <div class="eyebrow">Une histoire encore en train de s'écrire</div>
+  <h1>Abdouroihamane <span class="amp">&amp;</span> Annouchka</h1>
+  <p class="tagline">D'une amitié entre Dakar et les Comores, à une distance qu'on refuse de laisser gagner.</p>
+
+  <div class="constellation">
+    <div class="dot a"></div>
+    <div class="dot b"></div>
+    <div class="link-line"></div>
+    <div class="heart-send" id="heartSend">♥</div>
+  </div>
+
+  <button class="send-btn" id="sendHeartBtn">Envoyer un cœur</button>
+  <p class="send-note" id="sendNote">Un cœur vient de traverser la distance.</p>
+
+  <div class="scroll-cue"><span></span>défiler</div>
+</section>
+
+<section id="timeline">
+  <div class="section-head">
+    <div class="eyebrow">Notre chemin</div>
+    <h2>Comment on en est arrivés là</h2>
+  </div>
+
+  <div class="timeline-wrap">
+    <div class="bloom-col">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <g id="petals">
+          <path class="petal" data-petal="1" d="M60 60 C 40 40, 20 20, 60 5 C 100 20, 80 40, 60 60 Z"></path>
+          <path class="petal" data-petal="2" d="M60 60 C 80 45, 105 35, 115 60 C 105 85, 80 75, 60 60 Z"></path>
+          <path class="petal" data-petal="3" d="M60 60 C 78 78, 85 105, 60 115 C 35 105, 42 78, 60 60 Z"></path>
+          <path class="petal" data-petal="4" d="M60 60 C 40 78, 15 85, 5 60 C 15 35, 40 45, 60 60 Z"></path>
+          <circle class="flower-center" cx="60" cy="60" r="9"></circle>
+        </g>
+      </svg>
+    </div>
+
+    <div class="milestones">
+      <div class="milestone" data-petal-target="1">
+        <span class="year">Avant 2024</span>
+        <h3>Meilleurs amis</h3>
+        <p>Avant tout le reste, il y avait ça : une amitié simple, celle où on peut tout se dire. Personne ne se doutait encore de ce qui se préparait.</p>
+      </div>
+
+      <div class="milestone" data-petal-target="2">
+        <span class="year">2024 · Départ pour le Sénégal</span>
+        <h3>Deux pays, une même envie de se parler</h3>
+        <p>Il part étudier à Dakar, elle reste aux Comores. Sur le papier, encore plus de kilomètres entre eux. Mais c'est justement là que les appels s'allongent, que les silences deviennent complices, et que l'amitié commence à ressembler à autre chose.</p>
+      </div>
+
+      <div class="milestone" data-petal-target="3">
+        <span class="year">Fin 2024</span>
+        <h3>Le début officiel</h3>
+        <p>Ce qui n'était encore qu'un pressentiment devient une décision : être ensemble, vraiment, Sénégal et Comores compris. Le début de l'histoire à deux commence ici.</p>
+      </div>
+
+      <div class="milestone" data-petal-target="4">
+        <span class="year">Aujourd'hui</span>
+        <h3>Malgré la distance</h3>
+        <p>Entre Dakar et les Comores, les kilomètres n'ont pas eu le dernier mot. Chaque appel vidéo, chaque message, chaque petit geste comble l'écart un peu plus. La suite s'écrit encore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-head">
+    <div class="eyebrow">En images</div>
+    <h2>Nos souvenirs</h2>
+  </div>
+  <div class="gallery-grid">
+    <figure class="frame">
+      <div class="frame-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7EFE3" stroke-width="1.2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l2-2h6l2 2h3v11H4z"/></svg>
+      </div>
+      <figcaption>Le tout premier fou rire</figcaption>
+    </figure>
+    <figure class="frame">
+      <div class="frame-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7EFE3" stroke-width="1.2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l2-2h6l2 2h3v11H4z"/></svg>
+      </div>
+      <figcaption>Le Sénégal, 2024</figcaption>
+    </figure>
+    <figure class="frame">
+      <div class="frame-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7EFE3" stroke-width="1.2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l2-2h6l2 2h3v11H4z"/></svg>
+      </div>
+      <figcaption>Le jour où c'est devenu officiel</figcaption>
+    </figure>
+    <figure class="frame">
+      <div class="frame-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7EFE3" stroke-width="1.2"><circle cx="12" cy="13" r="4"/><path d="M4 8h3l2-2h6l2 2h3v11H4z"/></svg>
+      </div>
+      <figcaption>Nous, aujourd'hui</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="calls">
+  <div class="section-head">
+    <div class="eyebrow">Dakar ↔ Comores</div>
+    <h2>Nos appels vidéo</h2>
+  </div>
+  <div class="gallery-grid">
+    <figure class="frame">
+      <div class="frame-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7EFE3" stroke-width="1.2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>
+      </div>
+      <figcaption>Bonsoir à Dakar, bonjour aux Comores</figcaption>
+    </figure>
+    <figure class="frame">
+      <div class="frame-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7EFE3" stroke-width="1.2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>
+      </div>
+      <figcaption>Un dimanche soir, en duo</figcaption>
+    </figure>
+</section>
+
+<section id="pardon">
+  <div class="letter-card">
+    <div class="eyebrow" style="margin-bottom:1.4rem;">Ce que je n'ai pas toujours su dire</div>
+    <p>Il y a des choses que je n'ai pas toujours bien faites. Des mots que j'aurais dû choisir avec plus de soin, du temps que j'aurais dû te donner autrement, des moments où je t'ai fait du mal sans toujours m'en rendre compte sur le coup. Je suis désolé, vraiment. Tu mérites toute la douceur et toute l'attention que je te promets de mieux t'apporter, aujourd'hui et demain. Merci d'être restée, malgré tout ça.</p>
+    <div class="letter-sign">Pardon, mon amour</div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="section-head">
+    <div class="eyebrow">Réservé à toi</div>
+    <h2>Nos vidéos</h2>
+  </div>
+
+  <div class="gate-card" id="videoGate">
+    <p class="gate-question">Qui est ton mec ?</p>
+    <input type="text" class="gate-input" id="gateInput" placeholder="Ta réponse" autocomplete="off">
+    <button class="send-btn" id="gateBtn" style="margin-top:1.1rem;">Déverrouiller</button>
+    <p class="gate-feedback" id="gateFeedback"></p>
+  </div>
+
+  <div class="video-grid hidden" id="videoContent">
+    <figure class="frame">
+      <div class="frame-inner">
+        <iframe src="https://drive.google.com/file/d/10gpuRm2VTsAHcgvvVwM__O1FQ-Ie5soF/preview" width="100%" height="100%" style="border:none;" allow="autoplay" allowfullscreen></iframe>
+      </div>
+      <figcaption>Un souvenir en mouvement</figcaption>
+    </figure>
+    <figure class="frame">
+      <div class="frame-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7EFE3" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="#F7EFE3" stroke="none"/></svg>
+      </div>
+      <figcaption>Un autre moment à toi</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="section-head">
+    <div class="eyebrow">Petit jeu</div>
+    <h2>Le quiz de l'amour</h2>
+  </div>
+  <div class="quiz-card">
+    <div id="quizBody"></div>
+  </div>
+</section>
+
+<section id="letter">
+  <div class="letter-card">
+    <p>« De meilleure amie à celle que j'aime, en passant par un été au Sénégal qui a tout basculé — je n'aurais rien changé. La distance ne fait que rendre chaque retrouvaille plus précieuse. Cette histoire ne fait que commencer. »</p>
+    <div class="letter-sign">Abdouroihamane</div>
+  </div>
+</section>
+
+<footer>Pour Annouchka, avec amour</footer>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var starfield = document.getElementById('starfield');
+  var starCount = reduceMotion ? 20 : 45;
+  for (var i = 0; i < starCount; i++){
+    var s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*70 + '%';
+    s.style.animationDelay = (Math.random()*4) + 's';
+    starfield.appendChild(s);
+  }
+
+  if (!reduceMotion){
+    var petalChars = ['✿','❀'];
+    for (var p = 0; p < 10; p++){
+      var pt = document.createElement('div');
+      pt.className = 'petal-fall';
+      pt.textContent = petalChars[p % 2];
+      pt.style.left = Math.random()*100 + '%';
+      pt.style.animationDuration = (10 + Math.random()*8) + 's';
+      pt.style.animationDelay = (Math.random()*10) + 's';
+      pt.style.fontSize = (0.8 + Math.random()*0.7) + 'rem';
+      starfield.appendChild(pt);
+    }
+  }
+
+  var sendBtn = document.getElementById('sendHeartBtn');
+  var heart = document.getElementById('heartSend');
+  var note = document.getElementById('sendNote');
+  sendBtn.addEventListener('click', function(){
+    heart.classList.remove('go');
+    void heart.offsetWidth;
+    heart.classList.add('go');
+    note.classList.add('show');
+    clearTimeout(sendBtn._t);
+    sendBtn._t = setTimeout(function(){ note.classList.remove('show'); }, 3200);
+  });
+
+  function normalize(str){
+    return str.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  var gateInput = document.getElementById('gateInput');
+  var gateBtn = document.getElementById('gateBtn');
+  var gateFeedback = document.getElementById('gateFeedback');
+  var videoGate = document.getElementById('videoGate');
+  var videoContent = document.getElementById('videoContent');
+
+  function checkGate(){
+    var val = gateInput.value;
+    if (!val.trim()){
+      gateFeedback.textContent = 'Écris un prénom d\'abord.';
+      gateFeedback.classList.add('error');
+      return;
+    }
+    if (normalize(val).indexOf('abdouroihamane') !== -1){
+      gateFeedback.classList.remove('error');
+      gateFeedback.textContent = 'Bonne réponse.';
+      videoGate.classList.add('hidden');
+      videoContent.classList.remove('hidden');
+    } else {
+      gateFeedback.classList.add('error');
+      gateFeedback.textContent = 'Pas tout à fait... réessaie.';
+    }
+  }
+
+  gateBtn.addEventListener('click', checkGate);
+  gateInput.addEventListener('keydown', function(e){
+    if (e.key === 'Enter'){ checkGate(); }
+    gateFeedback.classList.remove('error');
+  });
+
+  var milestones = document.querySelectorAll('.milestone');
+  var petals = document.querySelectorAll('.petal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        var idx = entry.target.getAttribute('data-petal-target');
+        petals.forEach(function(pt){
+          if (pt.getAttribute('data-petal') === idx){
+            pt.classList.add('bloomed');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  milestones.forEach(function(m){ io.observe(m); });
+
+  var questions = [
+    {
+      q: "Quel est le meilleur remède contre la distance ?",
+      options: ["Un appel vidéo surprise", "Compter les jours avant les retrouvailles", "Un message le matin et un le soir", "Les trois à la fois"],
+      correct: 3,
+      feedback: "Exactement — un peu de tout, tous les jours."
+    },
+    {
+      q: "D'après vous, qu'est-ce qui rend une histoire à distance plus forte ?",
+      options: ["La confiance", "La patience", "La communication", "Tout ça réuni"],
+      correct: 3,
+      feedback: "Il n'y a pas de raccourci : ça se construit avec les trois."
+    },
+    {
+      q: "Le meilleur moment d'une relation à distance, c'est...",
+      options: ["Les retrouvailles à l'aéroport", "Les petits mots du quotidien", "Planifier le prochain voyage ensemble", "Tous, sans exception"],
+      correct: 3,
+      feedback: "Chaque instant compte, même les plus petits."
+    },
+    {
+      q: "Une amitié qui devient de l'amour, c'est...",
+      options: ["Rare et précieux", "Le début le plus solide qui soit", "Une base de confiance déjà là", "Les trois"],
+      correct: 3,
+      feedback: "Commencer par l'amitié, c'est déjà avoir gagné du temps."
+    },
+    {
+      q: "Qu'est-ce qui compte le plus pour la suite de cette histoire ?",
+      options: ["Continuer à se choisir chaque jour", "Se retrouver enfin, pour de bon", "Grandir ensemble malgré tout", "Les trois, dans cet ordre ou un autre"],
+      correct: 3,
+      feedback: "La bonne réponse, toujours."
+    }
+  ];
+
+  var current = 0;
+  var score = 0;
+  var quizBody = document.getElementById('quizBody');
+
+  function renderQuestion(){
+    var item = questions[current];
+    var html = '<div class="quiz-progress">Question ' + (current+1) + ' / ' + questions.length + '</div>';
+    html += '<div class="quiz-q">' + item.q + '</div>';
+    html += '<div class="quiz-options" role="group">';
+    item.options.forEach(function(opt, i){
+      html += '<button class="quiz-opt" data-i="' + i + '">' + opt + '</button>';
+    });
+    html += '</div>';
+    html += '<div class="quiz-feedback" id="quizFeedback"></div>';
+    html += '<div class="quiz-nav"><button class="quiz-restart hidden" id="quizNext">Suivant</button></div>';
+    quizBody.innerHTML = html;
+
+    var opts = quizBody.querySelectorAll('.quiz-opt');
+    var answered = false;
+    opts.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if (answered) return;
+        answered = true;
+        var i = parseInt(btn.getAttribute('data-i'), 10);
+        opts.forEach(function(b){ b.classList.remove('chosen'); });
+        btn.classList.add('chosen');
+        if (i === item.correct){ score++; }
+        document.getElementById('quizFeedback').textContent = item.feedback;
+        var nextBtn = document.getElementById('quizNext');
+        nextBtn.classList.remove('hidden');
+        nextBtn.textContent = current < questions.length - 1 ? 'Suivant' : 'Voir le résultat';
+        nextBtn.addEventListener('click', function go(){
+          nextBtn.removeEventListener('click', go);
+          current++;
+          if (current < questions.length){ renderQuestion(); }
+          else { renderResult(); }
+        });
+      });
+    });
+  }
+
+  function renderResult(){
+    var html = '<div class="quiz-result">';
+    html += '<h3>' + score + ' / ' + questions.length + '</h3>';
+    html += '<p>Peu importe le score : cette histoire n\'a jamais eu besoin d\'un quiz pour prouver qu\'elle est la bonne.</p>';
+    html += '<button class="quiz-restart" id="quizRestart">Recommencer</button>';
+    html += '</div>';
+    quizBody.innerHTML = html;
+    document.getElementById('quizRestart').addEventListener('click', function(){
+      current = 0; score = 0; renderQuestion();
+    });
+  }
+
+  renderQuestion();
+})();
+</script>
+
+</body>
+</html>
